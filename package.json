@@ -2,7 +2,7 @@
 	"name": "vscode-duplicate-then-comment-out",
 	"displayName": "DuplicateThenCommentOut",
 	"description": "Duplicate the selected lines, then comment out the original selected lines",
-	"version": "0.0.1",
+	"version": "0.0.0",
 	"engines": {
 		"vscode": "^1.43.0"
 	},
@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onCommand:extension.duplicateThenCommentOut"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
+				"command": "extension.duplicateThenCommentOut",
+				"title": "Duplicate then Comment-out"
 			}
 		]
 	},

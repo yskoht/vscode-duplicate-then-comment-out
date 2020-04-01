@@ -1,27 +1,42 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+const lineSeparatorCharacter = (eol: vscode.EndOfLine): string => {
+	switch(eol) {
+		case vscode.EndOfLine.LF: {
+			return '\n';
+		}
+		case vscode.EndOfLine.CRLF: {
+			return '\r\n';
+		}
+	}
+};
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "vscode-duplicate-then-comment-out" is now active!');
+const main = async () => {
+	const editor = vscode.window.activeTextEditor;
+	if (!editor) { return; }
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('extension.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
+	const selections = editor.selections;
+	const firstSelection = selections[0];
+	const lastSelection = selections[selections.length - 1];
+	const startLine = editor.document.lineAt(firstSelection.start.line);
+	const endLine = editor.document.lineAt(lastSelection.end.line);
+	const range = new vscode.Range(startLine.range.start, endLine.range.end);
+	const text = editor.document.getText(range);
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World!');
+	await vscode.commands.executeCommand('editor.action.addCommentLine');
+
+	const lsc = lineSeparatorCharacter(editor.document.eol);
+	const nextLinePosition = new vscode.Position(endLine.range.end.line + 1, 0);
+	editor.edit(editBuilder => {
+		editBuilder.insert(nextLinePosition, text + lsc);
 	});
+	editor.selection = new vscode.Selection(nextLinePosition, nextLinePosition);
+};
 
+export function activate(context: vscode.ExtensionContext) {
+	const disposable = vscode.commands.registerCommand('extension.duplicateThenCommentOut', main);
 	context.subscriptions.push(disposable);
+
 }
 
-// this method is called when your extension is deactivated
 export function deactivate() {}
