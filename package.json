@@ -3,12 +3,21 @@
 	"displayName": "DuplicateThenCommentOut",
 	"description": "Duplicate the selected lines, then comment out the original selected lines",
 	"version": "0.0.0",
+	"publisher": "yskoht",
 	"engines": {
 		"vscode": "^1.43.0"
+	},
+	"author": {
+		"name": "yskoht"
 	},
 	"categories": [
 		"Other"
 	],
+	"icon": "images/icon.png",
+	"galleryBanner": {
+		"color": "#FFECB3",
+		"theme": "light"
+	},
 	"activationEvents": [
 		"onCommand:extension.duplicateThenCommentOut"
 	],
@@ -19,7 +28,15 @@
 				"command": "extension.duplicateThenCommentOut",
 				"title": "Duplicate then Comment-out"
 			}
-		]
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"command": "extension.insertTemplate",
+					"group": "z_commands"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
@@ -41,5 +58,15 @@
 		"mocha": "^7.0.1",
 		"typescript": "^3.7.5",
 		"vscode-test": "^1.3.0"
-	}
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/yskoht/vscode-duplicate-then-comment-out/issues",
+		"email": "ysk.oht@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/yskoht/vscode-duplicate-then-comment-out.git"
+	},
+	"homepage": "https://github.com/yskoht/vscode-duplicate-then-comment-out/blob/master/README.md"
 }
