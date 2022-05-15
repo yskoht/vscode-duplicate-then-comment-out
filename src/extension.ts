@@ -28,12 +28,12 @@ const main = async () => {
 	const lsc = lineSeparatorCharacter(editor.document.eol);
 	const nextLinePosition = new vscode.Position(endLine.range.end.line + 1, 0);
 	editor.edit(editBuilder => {
+		editor.selection = new vscode.Selection(nextLinePosition, nextLinePosition);
 		if (editor.document.lineCount === nextLinePosition.line) {
 			editBuilder.insert(nextLinePosition, lsc);
 		}
 		editBuilder.insert(nextLinePosition, text + lsc);
 	});
-	editor.selection = new vscode.Selection(nextLinePosition, nextLinePosition);
 };
 
 export function activate(context: vscode.ExtensionContext) {
