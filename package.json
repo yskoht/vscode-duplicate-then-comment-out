@@ -2,7 +2,7 @@
 	"name": "vscode-duplicate-then-comment-out",
 	"displayName": "DuplicateThenCommentOut",
 	"description": "Duplicate the selected lines, then comment out the original selected lines",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "yskoht",
 	"engines": {
 		"vscode": "^1.67.0"
