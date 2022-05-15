@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.2] - 2022-05-15
+### Changed
+- Bumped package versions
+- Changed behavior when executing commands at the end of a file
+- Changed cursor position after inserting text
+
 ## [0.0.1] - 2020-04-02
 ### Added
 - Initial release
